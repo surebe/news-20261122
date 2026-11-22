@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/><style>
+@page { size: 1024px 1024px; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  width: 1024px; height: 1024px; overflow: hidden;
+  background: #f4ecda; color: #191b20;
+  font-family: "Noto Sans", sans-serif;
+}
+.serif { font-family: "Noto Serif Display", "Noto Serif", serif; }
+
+/* top + bottom bars */
+.bar {
+  height: 23px; background: #101623; color: #f4ecda;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 14px; font-size: 10px; font-weight: 700;
+  letter-spacing: 2.2px;
+}
+
+/* masthead */
+.masthead { padding: 4px 28px 0 28px; text-align: center; }
+.masthead h1 {
+  margin: 0; font-size: 73px; font-weight: 900; line-height: 0.98;
+  letter-spacing: -2px; white-space: nowrap; color: #14161c;
+}
+.dek {
+  margin: 4px 0 6px 0; text-align: center; color: #a31621;
+  font-size: 16.5px; font-style: italic; font-weight: 600;
+}
+.rule-thick { border-top: 3px solid #14161c; margin: 0 28px; }
+.rule-thin { border-top: 1px solid #14161c; margin: 2px 28px 0 28px; }
+
+/* stat band */
+.stats {
+  display: flex; margin: 0 28px; padding: 4px 0 4px 0;
+  border-bottom: 1px solid #14161c;
+}
+.stat { flex: 1; text-align: center; padding: 0 6px; }
+.stat + .stat { border-left: 1px solid #c8bb9e; }
+.stat .num {
+  font-size: 34px; font-weight: 700; color: #a31621; line-height: 1.02;
+}
+.stat .cap { font-size: 9px; line-height: 1.2; color: #3a372e; }
+
+/* region strip */
+.regions { display: flex; margin: 5px 28px 0 28px; height: 20px; }
+.region {
+  color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1.4px;
+  display: flex; align-items: center; justify-content: center;
+  white-space: nowrap; overflow: hidden;
+}
+
+/* story cards */
+.heroes { display: flex; gap: 12px; padding: 7px 28px 0 28px; }
+.hero { width: 314.7px; }
+.secondaries { display: flex; gap: 10px; padding: 6px 28px 0 28px; }
+.sec { width: 185.6px; }
+.artbox { position: relative; overflow: hidden; background: #223; }
+.artbox img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.kicker {
+  position: absolute; top: 0; left: 0; background: #b01e24; color: #fff;
+  font-weight: 800; letter-spacing: 1.2px; padding: 4px 9px;
+}
+.hero .kicker { font-size: 13.5px; }
+.sec .kicker { font-size: 9px; padding: 3px 6px; }
+.srcchip {
+  position: absolute; left: 7px; bottom: 7px; color: #f4ecda;
+  background: rgba(13, 18, 30, 0.88); font-weight: 700;
+  padding: 3px 7px; letter-spacing: 0.4px;
+}
+.hero .srcchip { font-size: 9.5px; }
+.sec .srcchip { font-size: 7.5px; left: 5px; bottom: 5px; padding: 2px 5px; }
+.cert {
+  position: absolute; right: 7px; bottom: 7px; background: #f4ecda;
+  color: #14161c; font-weight: 800; letter-spacing: 1px;
+  padding: 3px 7px; font-size: 8.5px;
+}
+.cert i {
+  display: inline-block; width: 6px; height: 6px; background: #b01e24;
+  margin-right: 4px;
+}
+.sec .cert { display: none; }
+.kickrow {
+  display: flex; align-items: center; gap: 6px; margin-top: 4px;
+}
+.pnum {
+  flex: none; width: 17px; height: 17px; border-radius: 50%;
+  background: #b01e24; color: #fff; font-size: 10.5px; font-weight: 800;
+  text-align: center; line-height: 17px;
+}
+.sec .pnum { width: 14px; height: 14px; font-size: 9px; line-height: 14px; }
+.place {
+  color: #a31621; font-weight: 800; letter-spacing: 0.9px;
+  white-space: nowrap; overflow: hidden;
+}
+.hero .place { font-size: 11px; }
+.sec .place { font-size: 8.3px; letter-spacing: 0.5px; }
+.hero h2 {
+  margin: 3px 0 3px 0; font-size: 22.5px; font-weight: 700;
+  line-height: 1.05; letter-spacing: -0.2px;
+}
+.hero p { margin: 0; font-size: 10.9px; line-height: 1.28; color: #35322b; }
+.sec h3 {
+  margin: 3px 0 2px 0; font-size: 13.8px; font-weight: 700;
+  line-height: 1.1;
+}
+.sec p { margin: 0; font-size: 9.2px; line-height: 1.25; color: #35322b; }
+
+/* bottom: map + briefs */
+.bottom { display: flex; gap: 14px; padding: 5px 28px 0 28px; }
+.mapbox { width: 478px; flex: none; }
+.maphead, .briefhead {
+  font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px;
+  margin-bottom: 5px;
+}
+.maphead span { color: #8a93a5; font-weight: 600; letter-spacing: 0.6px;
+  font-size: 9.5px; margin-left: 8px; }
+.mappanel {
+  position: relative; background: #14263e; height: 190px; overflow: hidden;
+}
+.mappanel img { width: 100%; height: 100%; display: block; }
+.pin {
+  position: absolute; width: 15px; height: 15px; border-radius: 50%;
+  background: #d8232a; border: 1.6px solid #f4ecda; color: #fff;
+  font-size: 8.6px; font-weight: 800; text-align: center;
+  line-height: 12.4px; transform: translate(-50%, -50%);
+}
+.briefs { flex: 1; }
+.briefcols { display: flex; gap: 14px; }
+.briefcol { flex: 1; }
+.brief { font-size: 9.15px; line-height: 1.26; margin-bottom: 2px; }
+.brief b { font-weight: 800; }
+.brief .n { color: #a31621; font-weight: 800; }
+.brief .src { color: #6d675a; }
+
+/* date check + sources */
+.datecheck {
+  margin: 5px 28px 0 28px; border: 1.6px solid #b01e24;
+  padding: 5px 10px; font-size: 9.8px; line-height: 1.35;
+  display: flex; gap: 10px;
+}
+.datecheck .tag {
+  flex: none; color: #b01e24; font-weight: 800; letter-spacing: 1.2px;
+  font-size: 10.5px; padding-top: 1px;
+}
+.sources {
+  margin: 3px 28px 3px 28px; font-size: 8.6px; color: #6d675a;
+  display: flex; justify-content: space-between;
+}
+.bottombar { position: absolute; bottom: 0; left: 0; right: 0; }
+</style></head>
+<body>
+  <div class="bar"><div>THE WHOLE WORLD — ONE SUNDAY</div>
+    <div>30 STORIES · 6 REGIONS · EVERY ONE DATED SUNDAY 22 NOVEMBER 2026</div></div>
+  <div class="masthead"><h1 class="serif">Sunday 22 November 2026</h1></div>
+  <div class="dek serif">Climate talks run on in Antalya · India post a record 629-6 in Wellington · Turin and Montevideo host the day's finals</div>
+  <div class="rule-thick"></div><div class="rule-thin"></div>
+  <div class="stats"><div class="stat"><div class="num serif">~200</div><div class="cap">delegations still negotiating at COP31</div></div><div class="stat"><div class="num serif">629-6</div><div class="cap">India's record Test total in New Zealand</div></div><div class="stat"><div class="num serif">35%</div><div class="cap">electricity's target share of world energy, 2035</div></div><div class="stat"><div class="num serif">34</div><div class="cap">members of Nepal PM's delegation to India</div></div><div class="stat"><div class="num serif">$2.41m</div><div class="cap">prize for the ATP Finals winner</div></div><div class="stat"><div class="num serif">$4,000</div><div class="cap">paid for a lock of Washington's hair</div></div></div>
+  <div class="regions"><div class="region" style="background:#5b4a8a;flex:0.200">NORTH AMERICA 6</div><div class="region" style="background:#b5502a;flex:0.133">LATIN AMERICA 4</div><div class="region" style="background:#2e6f6a;flex:0.167">EUROPE 5</div><div class="region" style="background:#c8912a;flex:0.053">AFRICA 1</div><div class="region" style="background:#44607e;flex:0.233">ASIA 7</div><div class="region" style="background:#4a7c59;flex:0.233">OCEANIA 7</div></div>
+  <div class="heroes">
+    <div class="hero">
+      <div class="artbox" style="height:114px">
+        <img src="../art/cop31.jpg"/>
+        <div class="kicker">TALKS RUN ON</div>
+        <div class="srcchip">Reuters</div>
+        <div class="cert"><i></i>REPORTED</div>
+      </div>
+      <div class="kickrow"><div class="pnum">1</div>
+        <div class="place">ANTALYA, TÜRKIYE · CLIMATE TALKS</div></div>
+      <h2 class="serif">Climate talks run past deadline in Antalya</h2>
+      <p>Nearly 200 delegations negotiated into Sunday, a day past the deadline, over a draft to lift electricity's share of energy to 35% by 2035. (Reuters)</p>
+    </div>
+    <div class="hero">
+      <div class="artbox" style="height:114px">
+        <img src="../art/cricket.jpg"/>
+        <div class="kicker">RECORD 629-6</div>
+        <div class="srcchip">Reuters</div>
+        <div class="cert"><i></i>REPORTED</div>
+      </div>
+      <div class="kickrow"><div class="pnum">2</div>
+        <div class="place">WELLINGTON, NEW ZEALAND · CRICKET</div></div>
+      <h2 class="serif">Pant's century powers a record 629-6</h2>
+      <p>Pant's sizzling century took India to 629-6 at lunch on day four — their highest Test total in New Zealand, with a lead of 261. (Reuters)</p>
+    </div>
+    <div class="hero">
+      <div class="artbox" style="height:114px">
+        <img src="../art/libertadores.jpg"/>
+        <div class="kicker">THE FINAL</div>
+        <div class="srcchip">Xinhua</div>
+        <div class="cert"><i></i>FORECAST</div>
+      </div>
+      <div class="kickrow"><div class="pnum">3</div>
+        <div class="place">MONTEVIDEO, URUGUAY · FOOTBALL</div></div>
+      <h2 class="serif">Palmeiras face Estudiantes in the final</h2>
+      <p>Palmeiras meet Estudiantes in South America's biggest club match, at the stadium that hosted the first World Cup final. (Xinhua)</p>
+    </div></div>
+  <div class="secondaries">
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/nepal.jpg"/>
+        <div class="kicker">FIRST VISIT</div>
+        <div class="srcchip">Radio Nepal</div>
+      </div>
+      <div class="kickrow"><div class="pnum">4</div>
+        <div class="place">KATHMANDU, NEPAL · VISIT</div></div>
+      <h3 class="serif">Nepal's PM flies to India on first visit</h3>
+      <p>Shah leads 34 envoys to New Delhi.</p>
+    </div>
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/aukus.jpg"/>
+        <div class="kicker">SUB ROW</div>
+        <div class="srcchip">Reuters</div>
+      </div>
+      <div class="kickrow"><div class="pnum">5</div>
+        <div class="place">SYDNEY, AUSTRALIA · AUKUS</div></div>
+      <h3 class="serif">Australia rebukes US over AUKUS warning</h3>
+      <p>“They are wrong,” Marles said Sunday.</p>
+    </div>
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/ship.jpg"/>
+        <div class="kicker">SHIP HIT</div>
+        <div class="srcchip">BBC</div>
+      </div>
+      <div class="kickrow"><div class="pnum">6</div>
+        <div class="place">GULF OF FINLAND · SHIP HIT</div></div>
+      <h3 class="serif">Russia-bound ship hit by drones in Gulf</h3>
+      <p>Helsinki blames a Ukrainian strike.</p>
+    </div>
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/fbi.jpg"/>
+        <div class="kicker">FBI PROBE</div>
+        <div class="srcchip">BBC</div>
+      </div>
+      <div class="kickrow"><div class="pnum">7</div>
+        <div class="place">WASHINGTON, US · CYBER</div></div>
+      <h3 class="serif">FBI probes apparent hack of crime database</h3>
+      <p>Police database NCIC is the target.</p>
+    </div>
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/gamer.jpg"/>
+        <div class="kicker">GAMER'S TIP</div>
+        <div class="srcchip">BBC</div>
+      </div>
+      <div class="kickrow"><div class="pnum">8</div>
+        <div class="place">UNITED STATES · RESCUE</div></div>
+      <h3 class="serif">Teen gamer's tip helps rescue missing girl</h3>
+      <p>He spotted her from an FBI alert.</p>
+    </div></div>
+  <div class="secondaries">
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/sumo.jpg"/>
+        <div class="kicker">ONOSATO WINS</div>
+        <div class="srcchip">JSA</div>
+      </div>
+      <div class="kickrow"><div class="pnum">9</div>
+        <div class="place">FUKUOKA, JAPAN · SUMO</div></div>
+      <h3 class="serif">Onosato wins the Cup in a playoff</h3>
+      <p>A playoff win over Wakamotoharu.</p>
+    </div>
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/atp.jpg"/>
+        <div class="kicker">TITLE MATCH</div>
+        <div class="srcchip">ATP</div>
+      </div>
+      <div class="kickrow"><div class="pnum">10</div>
+        <div class="place">TURIN, ITALY · TENNIS</div></div>
+      <h3 class="serif">Alcaraz and Zverev meet in Turin final</h3>
+      <p>A new champion is certain in Turin.</p>
+    </div>
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/fcc.jpg"/>
+        <div class="kicker">PHONE ROW</div>
+        <div class="srcchip">Reuters</div>
+      </div>
+      <div class="kickrow"><div class="pnum">11</div>
+        <div class="place">BEIJING, CHINA · PHONES</div></div>
+      <h3 class="serif">China opposes US ban on its phone firms</h3>
+      <p>Commerce ministry spoke on Sunday.</p>
+    </div>
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/delhi.jpg"/>
+        <div class="kicker">AQI 278</div>
+        <div class="srcchip">Hindustan Times</div>
+      </div>
+      <div class="kickrow"><div class="pnum">12</div>
+        <div class="place">NEW DELHI, INDIA · SMOG</div></div>
+      <h3 class="serif">Delhi air stays 'very poor' on Sunday</h3>
+      <p>AQI hit 278 on Sunday morning.</p>
+    </div>
+    <div class="sec">
+      <div class="artbox" style="height:43px">
+        <img src="../art/spacex.jpg"/>
+        <div class="kicker">SPY SATS</div>
+        <div class="srcchip">Vandenberg SFB</div>
+      </div>
+      <div class="kickrow"><div class="pnum">13</div>
+        <div class="place">VANDENBERG, US · SPACE</div></div>
+      <h3 class="serif">SpaceX to launch spy satellites Sunday</h3>
+      <p>NROL-136 lifts off at 12:23 UTC.</p>
+    </div></div>
+  <div class="bottom">
+    <div class="mapbox">
+      <div class="maphead">WHERE IT HAPPENED <span>pins match story numbers</span></div>
+      <div class="mappanel"><img src="dotmap.png"/><div class="pin" style="left:56.8%;top:34.1%">1</div><div class="pin" style="left:97.9%;top:87.8%">2</div><div class="pin" style="left:31.9%;top:84.0%">3</div><div class="pin" style="left:72.4%;top:40.5%">4</div><div class="pin" style="left:91.2%;top:83.3%">5</div><div class="pin" style="left:55.1%;top:17.9%">6</div><div class="pin" style="left:26.0%;top:32.7%">7</div><div class="pin" style="left:19.9%;top:32.3%">8</div><div class="pin" style="left:85.3%;top:36.4%">9</div><div class="pin" style="left:50.2%;top:28.4%">10</div><div class="pin" style="left:81.3%;top:32.0%">11</div><div class="pin" style="left:70.1%;top:39.9%">12</div><div class="pin" style="left:13.5%;top:35.7%">13</div></div>
+    </div>
+    <div class="briefs">
+      <div class="briefhead">ALSO ON SUNDAY 22 NOVEMBER — 17 MORE STORIES</div>
+      <div class="briefcols"><div class="briefcol"><div class="brief"><span class="n">14</span> <b>Asia</b> · Pyongyang: Marathon put off to October <span class="src">(Reuters)</span></div><div class="brief"><span class="n">15</span> <b>North America</b> · Washington: Lock of hair sells for $4,000 <span class="src">(BBC)</span></div><div class="brief"><span class="n">16</span> <b>Oceania</b> · Whanganui: Racer dies at hillclimb <span class="src">(MotorSport NZ)</span></div><div class="brief"><span class="n">17</span> <b>Asia</b> · Tokyo: Kojima: AI may sap the joy of creation <span class="src">(Nikkei Asia)</span></div><div class="brief"><span class="n">18</span> <b>Asia</b> · New Delhi: Drones spray anti-smog mist <span class="src">(Daily Pioneer)</span></div><div class="brief"><span class="n">19</span> <b>Europe</b> · Toulouse: Macron dines with 60 business chiefs <span class="src">(EFE)</span></div><div class="brief"><span class="n">20</span> <b>Europe</b> · Ukraine: Strikes near nuclear plants raise leak risk <span class="src">(EFE)</span></div><div class="brief"><span class="n">21</span> <b>Africa</b> · Nigeria: Young voters sit out the coming election <span class="src">(BBC)</span></div><div class="brief"><span class="n">22</span> <b>Latin America</b> · Santiago: Chile braces for a brutal wildfire season <span class="src">(EFE)</span></div></div>
+      <div class="briefcol"><div class="brief"><span class="n">23</span> <b>Latin America</b> · Los Angeles: Allende warns of far right's rise <span class="src">(EFE)</span></div><div class="brief"><span class="n">24</span> <b>Latin America</b> · Mexico City: Cathedral ends night tours <span class="src">(Xinhua)</span></div><div class="brief"><span class="n">25</span> <b>North America</b> · Washington: Democrats hunt new leaders <span class="src">(EFE)</span></div><div class="brief"><span class="n">26</span> <b>Oceania</b> · NZ: Farmlands chair quits in row <span class="src">(Farmers Weekly)</span></div><div class="brief"><span class="n">27</span> <b>Oceania</b> · NZ: Five split $1m Lotto prize <span class="src">(NZ Herald)</span></div><div class="brief"><span class="n">28</span> <b>Oceania</b> · Ruatoria: House slips off foundations <span class="src">(NZ Herald)</span></div><div class="brief"><span class="n">29</span> <b>Oceania</b> · Auckland: Motorcyclist critically hurt <span class="src">(NZ Herald)</span></div><div class="brief"><span class="n">30</span> <b>North America</b> · Las Vegas: Verstappen wins Las Vegas GP <span class="src">(Reuters)</span></div></div></div>
+    </div>
+  </div>
+  <div class="datecheck"><div class="tag">DATE CHECK</div>
+    <div>Left out as Saturday 21 November's news, however Sunday the headlines looked: Bahrain's Iranian-attack report, the Hormuz mediation statements and President Aoun's speech in Beirut. Also excluded: Friday's Peru earthquake and the El Chapo Isidro capture, a Friday-night raid.</div></div>
+  <div class="sources">
+    <div>Sources: Reuters, BBC, AP wires and the outlets named with each story. Pictures: original illustrations made for this page; map drawn in code.</div>
+    <div>CERTAINTY — <b>REPORTED</b> = carried by the day's wires · <b>FORECAST</b> = still to happen when drawn</div>
+  </div>
+  <div class="bar bottombar"><div>THE WHOLE WORLD — ONE SUNDAY</div>
+    <div>SUNDAY 22 NOVEMBER 2026 · ONE PAGE</div></div>
+</body></html>
